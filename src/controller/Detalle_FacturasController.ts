@@ -149,12 +149,12 @@ class Detalle_FacturasController {
             // Buscamos el detalle de la factura
             const detalle = await DetalleRepo.findOne({ where: { Numero } });
 
-            // Validamos si el detalle existe en la base de datos
+            
             if (!detalle) {
                 return resp.status(404).json({ mensaje: 'La factura no existe en la base de datos' });
             }
 
-            // Buscamos el detalle de la factura por su número de factura y lo actualizamos
+            
             await DetalleRepo.createQueryBuilder()
                 .update(Detalle_Factura)
                 .set({ Codigo_Productos, Cantidad })
