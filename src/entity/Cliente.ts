@@ -1,0 +1,22 @@
+import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Cabecera_Factura } from "./Cabecera_Factura";
+
+@Entity()
+export class Cliente{
+    //PrimaryColumn es para decirle que va a ser una llave primaria
+    //PrimaryGeneratedColumn es para decirle que va a ser una llave primaria y que va a ser autoicrementar 
+    @PrimaryColumn({type: 'int', unique: true})
+    Ruc_Cliente:number;
+    @Column({type: 'varchar', length: 50,nullable:true})
+    Nombres_Cliente:string;
+    @Column({type: 'varchar', length: 50,nullable:true})
+    Apellidos_Cliente:string;
+    @Column({type: 'varchar', length: 100,nullable:true})
+    Direccion_Cliente:string;
+    @Column({type: 'int',nullable:true})
+    Telefono_Cliente:number;
+
+
+    @OneToMany(()=> Cabecera_Factura, (facturaCabe)=> facturaCabe.cliente)
+    facturaCabe: Cabecera_Factura[]; 
+}
